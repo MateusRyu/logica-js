@@ -1,5 +1,6 @@
 alert('Boas vindas ao jogo do número secreto!');
 let numeroSecreto = 5;
+console.log(numeroSecreto);
 let chute;
 
 while (numeroSecreto != chute) {
@@ -7,4 +8,6 @@ while (numeroSecreto != chute) {
   console.log(`Número secreto: ${numeroSecreto}`);
   console.log(`Chute: ${chute}`);
 }
+
+alert(`Parabéns! Você descobriu o número secreto (${numeroSecreto}).`);
 
