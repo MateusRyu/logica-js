@@ -10,12 +10,16 @@ while (numeroSecreto != chute) {
   console.log(`Número secreto: ${numeroSecreto}`);
   console.log(`Chute: ${chute}`);
   console.log(`Tentativas: ${tentativas}`);
-  if (numeroSecreto > chute){
+  if (numeroSecreto == chute) {
+    break;
+  } else if (numeroSecreto > chute){
     alert(`O número secreto é maior que ${chute}.`);
   } else if (numeroSecreto < chute) {
     alert(`O número secreto é menor que ${chute}.`)
   }
 }
 
-alert(`Parabéns! Você descobriu o número secreto '${numeroSecreto}' com ${tentativas} tentativa(s).`);
+let palavraTentativas = tentativas > 1 ? 'tentativas' : 'tentativa';
+alert(`Parabéns! Você descobriu o número secreto '${numeroSecreto}' com ${tentativas} ${palavraTentativas}.`);
+
 
