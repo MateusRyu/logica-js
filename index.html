@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=MJaWDVDL"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap"
@@ -14,21 +15,24 @@
 
 <body>
     <div class="container">
-        <h1>Jogo do número secreto!</h1>
+        <h1>Adivinhe o <span class="container__texto-azul">número secreto!</span></h1>
         <div class="container__conteudo">
-            <img src="./img/robot.png" alt="robô mergulhador" class="container__imagem-robo escondido" />
-            
-            <div class="container__informacoes escondido">
+            <div class="container__informacoes">
                 <img src="./img/trophy.png" alt="ícone de um troféu" class="escondido" />
                  <div class="container__texto">
-                    <h1>Você <span class="container__texto-azul">acertou!</span></h1>
-                    <h2>Você descobriu o número secreto!</h2>
+                    <h2 id="mensagem"></h2>
+                    <p id="dica"></p>
+                    <input type="number" name="chute" id="chute" value="" placeholder="Digite seu chute!">
+                    <div class="chute container__botoes">
+                        <button type="button" onclick="verificarChute()" class="container__botao">
+                            Chutar
+                        </button>
+                        <button type="button" onclick="reiniciarJogo()" class="container__botao" disabled>
+                            Reiniciar o jogo!
+                        </button>
+                   </div>
                 </div>
             </div>
-            <form class="container__informacoes">
-                <input type="number" name="numeroMaximo" value="100">
-                <input type="submit" value="Iniciar o jogo!">
-            </form>
         </div>
     </div>
     <script src="app.js" defer></script>

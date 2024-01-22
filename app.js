@@ -1,26 +1,45 @@
-alert('Boas vindas ao jogo do número secreto!');
-let numeroMaximo = 100;
-let numeroSecreto = parseInt(Math.random() * numeroMaximo) + 1;
-console.log(numeroSecreto);
-let chute;
-let tentativas = 0;
+responsiveVoice.setDefaultVoice("Brazilian Portuguese Female");
 
-while (numeroSecreto != chute) {
-  tentativas++;
-  chute = prompt(`Escolha um número entre 1 e ${numeroMaximo}`);
-  console.log(`Número secreto: ${numeroSecreto}`);
-  console.log(`Chute: ${chute}`);
-  console.log(`Tentativas: ${tentativas}`);
-  if (numeroSecreto == chute) {
-    break;
-  } else if (numeroSecreto > chute){
-    alert(`O número secreto é maior que ${chute}.`);
-  } else if (numeroSecreto < chute) {
-    alert(`O número secreto é menor que ${chute}.`)
-  }
+const chute = document.getElementById("chute");
+const mensagem = document.getElementById("mensagem");
+const dica = document.getElementById("dica");
+
+let numeroMaximo;
+let numeroSecreto;
+let texto;
+let tentativas;
+
+function verificarChute() {
+    tentativas++;
+    if (numeroSecreto == chute.value) {
+        exibeVitoria();
+    } else if (numeroSecreto > chute.value){
+        texto = `O número secreto é maior que ${chute.value}.`;
+        dica.innerText = texto;
+        responsiveVoice.speak(texto);
+    } else if (numeroSecreto < chute.value) {
+        texto = `O número secreto é menor que ${chute.value}.`;
+        dica.innerText = texto;
+        responsiveVoice.speak(texto);
+    }
 }
 
-let palavraTentativas = tentativas > 1 ? 'tentativas' : 'tentativa';
-alert(`Parabéns! Você descobriu o número secreto '${numeroSecreto}' com ${tentativas} ${palavraTentativas}.`);
+function reiniciarJogo() {
+    numeroMaximo = 100;
+    numeroSecreto = parseInt(Math.random() * numeroMaximo) + 1;
+    texto = `Escolha um número entre 1 a ${numeroMaximo}:`;
+    mensagem.innerText = texto;
+    responsiveVoice.speak(texto);
+    tentativas = 0;  
+}
 
+function exibeVitoria() {
+    let palavraTentativas = tentativas > 1 ? 'tentativas' : 'tentativa';
+    texto = `Parabéns! Você descobriu o número secreto '${numeroSecreto}' com ${tentativas} ${palavraTentativas}.`;
+    dica.innerText = "";
+    mensagem.innerText = texto;
+    responsiveVoice.speak(texto);
+}
 
+responsiveVoice.speak("Bem-vindo ao jogo: Adivinhe o número secreto!");
+reiniciarJogo();
