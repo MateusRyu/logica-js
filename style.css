@@ -103,6 +103,10 @@ input {
     width: 100%;
 }
 
+input:disabled  {
+    background-color: #DDDDDD;
+}
+
 .escondido {
     display: none;
 }
