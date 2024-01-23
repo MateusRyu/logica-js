@@ -1,42 +1,61 @@
-responsiveVoice.setDefaultVoice("Brazilian Portuguese Female");
-
 const chute = document.getElementById("chute");
 const mensagem = document.getElementById("mensagem");
 const dica = document.getElementById("dica");
+const score = document.getElementById("tentativas");
+const chutar = document.getElementById("chutar");
+const reiniciar = document.getElementById("reiniciar");
 
 let numeroMaximo;
 let numeroSecreto;
-let texto;
 let tentativas;
 
-function exibeMensagem(mensagem, elemento) {
-    elemento.innerText = mensagem;
-    responsiveVoice.speak(mensagem);
+try {
+    responsiveVoice.setDefaultVoice("Brazilian Portuguese Female");
+} catch (error) {
+    console.error(error);
+} 
+
+function exibeTexto(texto, elemento) {
+    elemento.innerText = texto;
+    try {
+        responsiveVoice.speak(texto);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 function verificarChute() {
     tentativas++;
+    score.value = tentativas;
     if (numeroSecreto == chute.value) {
         exibeVitoria();
     } else if (numeroSecreto > chute.value){
-        exibeMensagem(`O número secreto é maior que ${chute.value}.`, mensagem);
+        exibeTexto(`O número secreto é maior que ${chute.value}.`, dica);
     } else if (numeroSecreto < chute.value) {
-        exibeMensagem(`O número secreto é menor que ${chute.value}.`, mensagem);
+        exibeTexto(`O número secreto é menor que ${chute.value}.`, dica);
     }
 }
 
 function reiniciarJogo() {
     numeroMaximo = 100;
     numeroSecreto = parseInt(Math.random() * numeroMaximo) + 1;
-    exibeMensagem(`Escolha um número entre 1 a ${numeroMaximo}:`, mensagem);
-    tentativas = 0;  
+    tentativas = 0;
+    chutar.removeAttribute('disabled');
+    reiniciar.setAttribute('disabled', true);
+    exibeTexto(`Escolha um número e entre 1 a ${numeroMaximo}:`, mensagem);
 }
 
 function exibeVitoria() {
     let palavraTentativas = tentativas > 1 ? 'tentativas' : 'tentativa';
-    exibeMensagem(`Parabéns! Você descobriu o número secreto '${numeroSecreto}' com ${tentativas} ${palavraTentativas}.`, mensagem);
     dica.innerText = "";
+    chutar.setAttribute('disabled', true);
+    reiniciar.removeAttribute('disabled');
+    exibeTexto(`Parabéns! Você descobriu o número secreto '${numeroSecreto}' com ${tentativas} ${palavraTentativas}.`, dica);
 }
 
-responsiveVoice.speak("Bem-vindo ao jogo: Adivinhe o número secreto!");
 reiniciarJogo();
+try {
+    responsiveVoice.speak("Bem-vindo ao jogo: Adivinhe o número secreto!");
+} catch (error) {
+    console.error(error);
+}
