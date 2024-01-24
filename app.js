@@ -27,6 +27,7 @@ function exibeTexto(texto, elemento) {
 function verificarChute() {
     tentativas++;
     score.value = tentativas;
+    adicionarLinha(tentativas, chute.value);
     if (numeroSecreto == chute.value) {
         exibeVitoria();
     } else if (numeroSecreto > chute.value){
@@ -51,6 +52,17 @@ function exibeVitoria() {
     chutar.setAttribute('disabled', true);
     reiniciar.removeAttribute('disabled');
     exibeTexto(`Parabéns! Você descobriu o número secreto '${numeroSecreto}' com ${tentativas} ${palavraTentativas}.`, dica);
+}
+
+function adicionarLinha(tentativa, chute) {
+    let tabela = document.querySelector("table");
+    let corpo = tabela.querySelector("tbody");
+    let novaLinha = corpo.insertRow();
+    let celulaTentativa = novaLinha.insertCell(0);
+    let celulaChute = novaLinha.insertCell(1);
+    celulaTentativa.innerHTML = tentativa;
+    celulaChute.innerHTML = chute;
+    novaLinha.classList.add("container__tabela");
 }
 
 reiniciarJogo();
