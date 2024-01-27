@@ -4,10 +4,12 @@ const dica = document.getElementById("dica");
 const score = document.getElementById("tentativas");
 const chutar = document.getElementById("chutar");
 const reiniciar = document.getElementById("reiniciar");
+const botao_demonstrar = document.getElementById('demonstrar');
 
 let numeroMaximo;
 let numeroSecreto;
 let tentativas;
+let limiteChutes = false;
 
 try {
     responsiveVoice.setDefaultVoice("Brazilian Portuguese Female");
@@ -38,11 +40,15 @@ function verificarChute() {
 }
 
 function reiniciarJogo() {
-    numeroMaximo = 100;
+    let tabela = document.querySelector('table');
+    let corpo = tabela.querySelector('tbody');
+    corpo.innerHTML = '';
+    numeroMaximo = 1000;
     numeroSecreto = parseInt(Math.random() * numeroMaximo) + 1;
     tentativas = 0;
     chutar.removeAttribute('disabled');
     reiniciar.setAttribute('disabled', true);
+    botao_demonstrar.removeAttribute('disabled');
     exibeTexto(`Escolha um número e entre 1 a ${numeroMaximo}:`, mensagem);
 }
 
@@ -51,6 +57,8 @@ function exibeVitoria() {
     dica.innerText = "";
     chutar.setAttribute('disabled', true);
     reiniciar.removeAttribute('disabled');
+    limiteChutes = false;
+    botao_demonstrar.setAttribute('disabled',true);
     exibeTexto(`Parabéns! Você descobriu o número secreto '${numeroSecreto}' com ${tentativas} ${palavraTentativas}.`, dica);
 }
 
@@ -63,6 +71,18 @@ function adicionarLinha(tentativa, chute) {
     celulaTentativa.innerHTML = tentativa;
     celulaChute.innerHTML = chute;
     novaLinha.classList.add("container__tabela");
+}
+
+async function demonstrar() {
+    limiteChutes = limiteChutes ? limiteChutes : [1, numeroMaximo];
+    media = Math.floor( (limiteChutes[0] + limiteChutes[1]) / 2 );
+    chute.value = media;
+    chutar.click()
+    if (numeroSecreto != chute.value) {
+        limiteQueVaiSerAjustado = dica.innerText.includes('maior') ? 0 : 1;
+        limiteChutes[limiteQueVaiSerAjustado] = media;
+        setTimeout(demonstrar, 0);
+    }
 }
 
 reiniciarJogo();

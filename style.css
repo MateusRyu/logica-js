@@ -53,7 +53,7 @@ body::before {
     flex: 1;
     padding: 20px;
     gap: 1rem;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .container__botoes {
@@ -78,6 +78,7 @@ body::before {
 
 .container__texto {
     margin: 16px 0 16px 0;
+    flex: 1;
 }
 
 .container__texto-azul {
