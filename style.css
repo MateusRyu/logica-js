@@ -135,6 +135,13 @@ input:disabled  {
     text-align: left;
 }
 
+.container__input {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin: 1.5rem 0px;
+}
+
 table {
     border-radius: 12px;
     border: solid;

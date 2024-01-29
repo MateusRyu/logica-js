@@ -5,6 +5,7 @@ const score = document.getElementById("tentativas");
 const chutar = document.getElementById("chutar");
 const reiniciar = document.getElementById("reiniciar");
 const botao_demonstrar = document.getElementById('demonstrar');
+const campoNumeroMaximo = document.getElementById('numeroMaximo');
 
 let numeroMaximo;
 let numeroSecreto;
@@ -43,7 +44,10 @@ function reiniciarJogo() {
     let tabela = document.querySelector('table');
     let corpo = tabela.querySelector('tbody');
     corpo.innerHTML = '';
-    numeroMaximo = 1000;
+    numeroMaximo = campoNumeroMaximo.value;
+    reiniciar.innerHTML = "Reiniciar o jogo!";
+    campoNumeroMaximo.setAttribute("disabled", true);
+    chute.max = numeroMaximo;
     numeroSecreto = parseInt(Math.random() * numeroMaximo) + 1;
     tentativas = 0;
     chutar.removeAttribute('disabled');
@@ -59,6 +63,7 @@ function exibeVitoria() {
     reiniciar.removeAttribute('disabled');
     limiteChutes = false;
     botao_demonstrar.setAttribute('disabled',true);
+    campoNumeroMaximo.removeAttribute("disabled");
     exibeTexto(`Parabéns! Você descobriu o número secreto '${numeroSecreto}' com ${tentativas} ${palavraTentativas}.`, dica);
 }
 
@@ -77,15 +82,14 @@ async function demonstrar() {
     limiteChutes = limiteChutes ? limiteChutes : [1, numeroMaximo];
     media = Math.floor( (limiteChutes[0] + limiteChutes[1]) / 2 );
     chute.value = media;
-    chutar.click()
+    chutar.click();
     if (numeroSecreto != chute.value) {
         limiteQueVaiSerAjustado = dica.innerText.includes('maior') ? 0 : 1;
         limiteChutes[limiteQueVaiSerAjustado] = media;
-        setTimeout(demonstrar, 0);
+        setTimeout(demonstrar, 200);
     }
 }
 
-reiniciarJogo();
 try {
     responsiveVoice.speak("Bem-vindo ao jogo: Adivinhe o número secreto!");
 } catch (error) {

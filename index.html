@@ -32,19 +32,27 @@
                  <div class="container__texto">
                     <h2 id="mensagem"></h2>
                     <p id="dica"></p>
-                    <label for="tentativas">Quantidade de tentativas:</label>
-                    <input type="number" name="tentativas" id="tentativas" value="0" disabled>
+                    <div class="container__input">
+                        <div>
+                            <label for="numeroMaximo">Escolha o limite máximo (2 ~ 999999999999999999):</label>
+                            <input type="number" name="numeroMaximo" id="numeroMaximo" value="100" min="2" max="999999999999999999">
+                        </div>
+                        <div>
+                            <label for="tentativas">Quantidade de tentativas:</label>
+                            <input type="number" name="tentativas" id="tentativas" value="0" disabled>
+                        </div>
+                    </div>
                     <label for="chute">Digite qual o seu chute sobre o número secreto:</label>
                     <input type="number" name="chute" id="chute" value="" placeholder="Digite seu chute!">
                     <div class="chute container__botoes">
-                        <button id="chutar" type="button" onclick="verificarChute()" class="container__botao">
+                        <button id="chutar" type="button" onclick="verificarChute()" class="container__botao" disabled>
                             Chutar
                         </button>
-                        <button id="reiniciar" type="button" onclick="reiniciarJogo()" class="container__botao" disabled>
-                            Reiniciar o jogo!
+                        <button id="reiniciar" type="button" onclick="reiniciarJogo()" class="container__botao">
+                            Iniciar o jogo!
                         </button>
                    </div>
-                  <button id="demonstrar" type="button" onclick="demonstrar()" class="container__botao">Demonstração</button>
+                  <button id="demonstrar" type="button" onclick="demonstrar()" class="container__botao" disabled>Demonstração</button>
                 </div>
             </div>
         </div>
