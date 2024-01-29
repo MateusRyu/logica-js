@@ -28,6 +28,14 @@ function exibeTexto(texto, elemento) {
 }
 
 function verificarChute() {
+    if (chute.value == "") {
+        exibeTexto("O campo do chute está vazio!", dica);
+        return false;
+    } else if (chute.value < 1 || chute.value > numeroMaximo) {
+        exibeTexto(`O valor do chute deve ser entre 1 e ${numeroMaximo}`, dica);
+        chute.value  = "";
+        return false;
+    }
     tentativas++;
     score.value = tentativas;
     adicionarLinha(tentativas, chute.value);
