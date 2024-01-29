@@ -38,6 +38,7 @@ function verificarChute() {
     } else if (numeroSecreto < chute.value) {
         exibeTexto(`O número secreto é menor que ${chute.value}.`, dica);
     }
+    chute.value = "";
 }
 
 function reiniciarJogo() {
@@ -51,6 +52,7 @@ function reiniciarJogo() {
     numeroSecreto = parseInt(Math.random() * numeroMaximo) + 1;
     tentativas = 0;
     chutar.removeAttribute('disabled');
+    chute.removeAttribute('disabled');
     reiniciar.setAttribute('disabled', true);
     botao_demonstrar.removeAttribute('disabled');
     exibeTexto(`Escolha um número e entre 1 a ${numeroMaximo}:`, mensagem);
@@ -79,14 +81,16 @@ function adicionarLinha(tentativa, chute) {
 }
 
 async function demonstrar() {
+    chute.setAttribute("disabled", true);
+    chutar.setAttribute("disabled", true);
     limiteChutes = limiteChutes ? limiteChutes : [1, numeroMaximo];
     media = Math.floor( (limiteChutes[0] + limiteChutes[1]) / 2 );
     chute.value = media;
-    chutar.click();
-    if (numeroSecreto != chute.value) {
+    verificarChute();
+    if (numeroSecreto != media) {
         limiteQueVaiSerAjustado = dica.innerText.includes('maior') ? 0 : 1;
         limiteChutes[limiteQueVaiSerAjustado] = media;
-        setTimeout(demonstrar, 200);
+        setTimeout(demonstrar, 0);
     }
 }
 
