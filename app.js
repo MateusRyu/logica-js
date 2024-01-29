@@ -32,7 +32,7 @@ function verificarChute() {
         exibeTexto("O campo do chute está vazio!", dica);
         return false;
     } else if (chute.value < 1 || chute.value > numeroMaximo) {
-        exibeTexto(`O valor do chute deve ser entre 1 e ${numeroMaximo}`, dica);
+        exibeTexto(`O valor do chute deve ser entre 1 e ${numeroMaximo}!`, dica);
         chute.value  = "";
         return false;
     }
@@ -50,10 +50,18 @@ function verificarChute() {
 }
 
 function reiniciarJogo() {
+    if (campoNumeroMaximo.value == "") {
+        exibeTexto("O campo do número máximo está vazio!", dica);
+        return false;
+    } else if (campoNumeroMaximo.value < 1 || campoNumeroMaximo.value > 999999999999999) {
+        exibeTexto(`O valor do número máximo deve ser entre 2 e ${999999999999999}!`, dica);
+        chute.value  = "";
+        return false;
+    }
     let tabela = document.querySelector('table');
     let corpo = tabela.querySelector('tbody');
     corpo.innerHTML = '';
-    numeroMaximo = campoNumeroMaximo.value;
+    numeroMaximo = parseInt(campoNumeroMaximo.value, 10);
     reiniciar.innerHTML = "Reiniciar o jogo!";
     campoNumeroMaximo.setAttribute("disabled", true);
     chute.max = numeroMaximo;
@@ -92,6 +100,7 @@ async function demonstrar() {
     chute.setAttribute("disabled", true);
     chutar.setAttribute("disabled", true);
     limiteChutes = limiteChutes ? limiteChutes : [1, numeroMaximo];
+    console.log(limiteChutes)
     media = Math.floor( (limiteChutes[0] + limiteChutes[1]) / 2 );
     chute.value = media;
     verificarChute();
