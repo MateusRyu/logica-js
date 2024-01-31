@@ -7,6 +7,9 @@ const reiniciar = document.getElementById("reiniciar");
 const botao_demonstrar = document.getElementById('demonstrar');
 const campoNumeroMaximo = document.getElementById('numeroMaximo');
 
+const lmimiteMaximo = 999999999999999;
+document.getElementById("limiteMaximo").innerText = lmimiteMaximo;
+
 let numeroMaximo;
 let numeroSecreto;
 let tentativas;
@@ -53,8 +56,8 @@ function reiniciarJogo() {
     if (campoNumeroMaximo.value == "") {
         exibeTexto("O campo do número máximo está vazio!", dica);
         return false;
-    } else if (campoNumeroMaximo.value < 1 || campoNumeroMaximo.value > 999999999999999) {
-        exibeTexto(`O valor do número máximo deve ser entre 2 e ${999999999999999}!`, dica);
+    } else if (campoNumeroMaximo.value < 1 || campoNumeroMaximo.value > lmimiteMaximo) {
+        exibeTexto(`O valor do número máximo deve ser entre 2 e ${lmimiteMaximo}!`, dica);
         chute.value  = "";
         return false;
     }
