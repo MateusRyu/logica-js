@@ -159,3 +159,10 @@ tbody tr {
 thead tr {
   border-bottom: double;
 }
+
+/* Estilo para celulares */
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+}
