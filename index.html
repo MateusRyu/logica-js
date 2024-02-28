@@ -1,65 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=MJaWDVDL"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>Adivinhe o número!</title>
-</head>
+    <meta name="description" content="Jogo de adivinhar o número" />
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <h1>Adivinhe o <span class="container__texto-azul">número secreto!</span></h1>
-        <div class="container__conteudo">
-            <div class="container__informacoes">
-                 <img src="./img/trophy.png" alt="ícone de um troféu" class="escondido" />
-                 <table>
-                    <thead>
-                        <tr class="container__tabela">
-                            <th>Tentativa</th>
-                            <th>Chute</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                 </table>
-                 <div class="container__texto">
-                    <h2 id="mensagem"></h2>
-                    <p id="dica"></p>
-                    <div class="container__input">
-                        <div>
-                            <label for="numeroMaximo">Escolha o limite máximo (2 ~ <span id="limiteMaximo"></span>):</label>
-                            <input type="number" name="numeroMaximo" id="numeroMaximo" value="100" min="2" max="999999999999999999">
-                        </div>
-                        <div>
-                            <label for="tentativas">Quantidade de tentativas:</label>
-                            <input type="number" name="tentativas" id="tentativas" value="0" disabled>
-                        </div>
-                    </div>
-                    <label for="chute">Digite qual o seu chute sobre o número secreto:</label>
-                    <input type="number" name="chute" id="chute" value="" placeholder="Digite seu chute!">
-                    <div class="chute container__botoes">
-                        <button id="chutar" type="button" onclick="verificarChute()" class="container__botao" disabled>
-                            Chutar
-                        </button>
-                        <button id="reiniciar" type="button" onclick="reiniciarJogo()" class="container__botao">
-                            Iniciar o jogo!
-                        </button>
-                    </div>
-                    <button id="demonstrar" type="button" onclick="demonstrar()" class="container__botao" disabled>
-                        Encontrar a resposta (IA)
-                    </button>
-                </div>
+      <h1>
+        Adivinhe o <span class="container__texto-azul">número secreto!</span>
+      </h1>
+      <div class="container__conteudo">
+        <div class="container__informacoes">
+          <img
+            src="./img/trophy.png"
+            alt="ícone de um troféu"
+            class="escondido"
+          />
+          <table>
+            <thead>
+              <tr class="container__tabela">
+                <th>Tentativa</th>
+                <th>Chute</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="container__texto">
+            <h2 id="mensagem"></h2>
+            <p id="dica"></p>
+            <div class="container__input">
+              <div>
+                <label for="numeroMaximo"
+                  >Escolha o limite máximo (2 ~
+                  <span id="limiteMaximo"></span>):</label
+                >
+                <input
+                  type="number"
+                  name="numeroMaximo"
+                  id="numeroMaximo"
+                  value="100"
+                  min="2"
+                  max="999999999999999999"
+                />
+              </div>
+              <div>
+                <label for="tentativas">Quantidade de tentativas:</label>
+                <input
+                  type="number"
+                  name="tentativas"
+                  id="tentativas"
+                  value="0"
+                  disabled
+                />
+              </div>
             </div>
+            <label for="chute"
+              >Digite qual o seu chute sobre o número secreto:</label
+            >
+            <input
+              type="number"
+              name="chute"
+              id="chute"
+              value=""
+              placeholder="Digite seu chute!"
+            />
+            <div class="chute container__botoes">
+              <button
+                id="chutar"
+                type="button"
+                onclick="verificarChute()"
+                class="container__botao"
+                disabled
+              >
+                Chutar
+              </button>
+              <button
+                id="reiniciar"
+                type="button"
+                onclick="reiniciarJogo()"
+                class="container__botao"
+              >
+                Iniciar o jogo!
+              </button>
+            </div>
+            <button
+              id="demonstrar"
+              type="button"
+              onclick="demonstrar()"
+              class="container__botao"
+              disabled
+            >
+              Encontrar a resposta (IA)
+            </button>
+          </div>
         </div>
+      </div>
     </div>
     <script src="app.js" defer></script>
-</body>
-
+  </body>
 </html>
