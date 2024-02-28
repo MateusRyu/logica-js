@@ -76,6 +76,11 @@ body::before {
   margin-top: 16px;
 }
 
+.container__botao:hover {
+  background-color: #1654a8;
+  transition: background-color 0.3s;
+}
+
 .container__botao:disabled {
   background-color: gray;
 }
