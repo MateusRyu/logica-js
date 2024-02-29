@@ -163,6 +163,7 @@ table {
   border-radius: 12px;
   border: solid;
   background-color: midnightblue;
+  min-height: 4rem;
 }
 
 tbody tr {
@@ -177,5 +178,9 @@ thead tr {
 @media only screen and (max-width: 768px) {
   h1 {
     font-size: 1.5rem;
+  }
+
+  .container__informacoes {
+    flex-direction: column;
   }
 }
