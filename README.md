@@ -56,10 +56,6 @@ Não é necessário instalar nenhum software adicional para jogar. O jogo pode s
 
 Contribuições são sempre bem-vindas! Se você tem alguma sugestão para melhorar o jogo, sinta-se à vontade para criar um pull request ou abrir uma issue.
 
-## Licença
-
-Este projeto é licenciado sob a Licença MIT - veja o arquivo `LICENSE` para mais detalhes.
-
 ---
 
 Desfrute do jogo e explore as estratégias para encontrar o número secreto!
